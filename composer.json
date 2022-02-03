@@ -1,0 +1,45 @@
+{
+   "name": "overdog/cloudfront-private",
+   "description": "A small plugin to sign cloudfront urls",
+   "type": "craft-plugin",
+   "version": "1.0.0",
+   "keywords": [
+      "craft",
+      "cms",
+      "aws",
+      "signed url",
+      "private assets",
+      "assets",
+      "craftcms",
+      "craft-plugin"
+   ],
+   "support": {
+      "docs": "https://www.3ejoueur.com",
+      "issues": "https://www.3ejoueur.com"
+   },
+   "license": "MIT",
+   "authors": [
+      {
+         "name": "3ejoueur",
+         "homepage": "https://www.3ejoueur.com"
+      }
+   ],
+   "require": {
+      "craftcms/cms": "^3.1.0",
+      "aws/aws-sdk-php": "^3.20.0"
+   },
+   "autoload": {
+      "psr-4": {
+         "overdog\\cloudfrontprivate\\": "src/"
+      }
+   },
+   "extra": {
+      "name": "cloudfront-private",
+      "handle": "cloudfront-private",
+    "developer": "3ejoueur",
+      "developerUrl": "https://www.3ejoueur.com",
+      "documentationUrl": "https://www.3ejoueur.com",
+      "changelogUrl": "https://www.3ejoueur.com",
+      "class": "overdog\\cloudfrontprivate\\CloudfrontPrivate"
+   }
+}
