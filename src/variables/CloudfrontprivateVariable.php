@@ -29,20 +29,12 @@ class CloudfrontprivateVariable
     * @param null $optional
     * @return string
     */
-   public function exampleVariable($optional = null)
-   {
-      $result = "And away we go to the Twig template...";
-      if ($optional) {
-         $result = "I'm feeling optional today...";
-      }
-      return $result;
-   }
-
+    
    public function getSignedUrl($url = null)
    {
       //return $url;
 
-      $urlTest = CloudfrontPrivate::getInstance()->serviceComponent->getSignedUrl($url);
+      $urlTest = CloudfrontPrivate::getInstance()->serviceComponent->signAPrivateDistribution();
 
      // return the getProductTableFieldArray function from service in the priceList variable
      return $urlTest;
