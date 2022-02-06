@@ -1,83 +1,49 @@
 <?php
 
-/**
- * cloudfront-private plugin for Craft CMS 3.x
- *
- * A small plugin to sign cloudfront urls
- *
- * @link      https://www.3ejoueur.com
- * @copyright Copyright (c) 2022 3ejoueur
- */
-
 namespace overdog\cloudfrontprivate;
 
-use overdog\cloudfrontprivate\services\CloudfrontprivateService as CloudfrontprivateServiceService;
-use overdog\cloudfrontprivate\variables\CloudfrontprivateVariable;
-use overdog\cloudfrontprivate\twigextensions\CloudfrontprivateTwigExtension;
+use overdog\cloudfrontprivate\variables\CloudfrontPrivateVariable;
+use overdog\cloudfrontprivate\twigextensions\CloudfrontPrivateTwigExtension;
+
+use overdog\cloudfrontprivate\models\Settings;
+use overdog\cloudfrontprivate\services\CloudfrontPrivateServices as Service;
 
 use Craft;
 use craft\base\Plugin;
-use craft\services\Plugins;
-use craft\events\PluginEvent;
 use craft\web\twig\variables\CraftVariable;
 
 use yii\base\Event;
 
-/**
- * Class Cloudfrontprivate
- *
- * @author    3ejoueur
- * @package   Cloudfrontprivate
- * @since     1.0.0
- *
- * @property  CloudfrontprivateServiceService $cloudfrontprivateService
- */
-class Cloudfrontprivate extends Plugin
+
+class CloudfrontPrivate extends Plugin
 {
    // Static Properties
    // =========================================================================
 
-   /**
-    * @var Cloudfrontprivate
-    */
+
    public static $plugin;
 
    // Public Properties
    // =========================================================================
 
-   /**
-    * @var string
-    */
    public $schemaVersion = '1.0.0';
-
-   /**
-    * @var bool
-    */
    public $hasCpSettings = false;
-
-   /**
-    * @var bool
-    */
    public $hasCpSection = false;
 
    // Public Methods
    // =========================================================================
 
-   /**
-    * @inheritdoc
-    */
    public function init()
    {
       parent::init();
       self::$plugin = $this;
 
-
-      // set the services
       $this->setComponents([
-         'serviceComponent' => \overdog\cloudfrontprivate\services\CloudfrontprivateService::class,
-     ]);
+         'cloudfrontPrivateServices' => Service::class,
+      ]);
+      
 
-      Craft::$app->view->registerTwigExtension(new CloudfrontprivateTwigExtension());
+      Craft::$app->view->registerTwigExtension(new CloudfrontPrivateTwigExtension());
 
       Event::on(
          CraftVariable::class,
@@ -85,16 +51,7 @@ class Cloudfrontprivate extends Plugin
          function (Event $event) {
             /** @var CraftVariable $variable */
             $variable = $event->sender;
-            $variable->set('cloudfrontprivate', CloudfrontprivateVariable::class);
-         }
-      );
-
-      Event::on(
-         Plugins::class,
-         Plugins::EVENT_AFTER_INSTALL_PLUGIN,
-         function (PluginEvent $event) {
-            if ($event->plugin === $this) {
-            }
+            $variable->set('cloudfrontprivate', CloudfrontPrivateVariable::class);
          }
       );
 
@@ -110,5 +67,10 @@ class Cloudfrontprivate extends Plugin
 
    // Protected Methods
    // =========================================================================
+
+   protected function createSettingsModel()
+   {
+       return new Settings();
+   }
 
 }

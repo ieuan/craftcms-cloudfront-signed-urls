@@ -10,7 +10,7 @@
 
 namespace overdog\cloudfrontprivate\twigextensions;
 
-use overdog\cloudfrontprivate\Cloudfrontprivate;
+use overdog\cloudfrontprivate\CloudfrontPrivate;
 
 use Craft;
 
@@ -23,7 +23,7 @@ use Twig\TwigFunction;
  * @package   Cloudfrontprivate
  * @since     1.0.0
  */
-class CloudfrontprivateTwigExtension extends AbstractExtension
+class CloudfrontPrivateTwigExtension extends AbstractExtension
 {
     // Public Methods
     // =========================================================================

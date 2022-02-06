@@ -36,7 +36,7 @@
    "extra": {
       "name": "cloudfront-private",
       "handle": "cloudfront-private",
-    "developer": "3ejoueur",
+      "developer": "3ejoueur",
       "developerUrl": "https://www.3ejoueur.com",
       "documentationUrl": "https://www.3ejoueur.com",
       "changelogUrl": "https://www.3ejoueur.com",
