@@ -1,6 +1,6 @@
 {
    "name": "troisiemejoueur/cloudfront-signed-urls",
-   "description": "A small plugin to sign cloudfront urls",
+   "description": "Create AWS Cloudfront Signed Urls for S3 Craft CMS storage",
    "type": "craft-plugin",
    "version": "1.0.0",
    "keywords": [

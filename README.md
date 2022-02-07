@@ -1,12 +1,12 @@
-# cloudfront-private plugin for Craft CMS 3.x
+# Cloudfront Signed Urls plugin for Craft CMS 3.x
 
-A small plugin to sign cloudfront urls
+Create AWS Cloudfront Signed Urls for S3 Craft CMS storage
 
 ![Screenshot](resources/img/plugin-logo.png)
 
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 3.4 or later.
 
 ## Installation
 
@@ -18,23 +18,23 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require /cloudfront-private
+        composer require troisiemejoueur/cloudfront-signed-urls
 
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for cloudfront-private.
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Cloudfront Signed Urls.
 
-## cloudfront-private Overview
-
--Insert text here-
-
-## Configuring cloudfront-private
+## Overview
 
 -Insert text here-
 
-## Using cloudfront-private
+## Config
 
 -Insert text here-
 
-## cloudfront-private Roadmap
+## Using in Twig
+
+-Insert text here-
+
+## Roadmap
 
 Some things to do, and ideas for potential features:
 
