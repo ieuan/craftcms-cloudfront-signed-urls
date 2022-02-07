@@ -1,4 +1,5 @@
 <?php
+
 /**
  * cloudfront-private plugin for Craft CMS 3.x
  *
@@ -8,58 +9,51 @@
  * @copyright Copyright (c) 2022 3ejoueur
  */
 
-namespace overdog\cloudfrontprivatetests\unit;
+namespace troisiemejoueur\cloudfrontsignedurlstests\unit;
 
 use Codeception\Test\Unit;
 use UnitTester;
 use Craft;
-use overdog\cloudfrontprivate\Cloudfrontprivate;
+use troisiemejoueur\cloudfrontsignedurlstests\Cloudfrontsignedurls;
 
-/**
- * ExampleUnitTest
- *
- *
- * @author    3ejoueur
- * @package   Cloudfrontprivate
- * @since     1.0.0
- */
+
 class ExampleUnitTest extends Unit
 {
-    // Properties
-    // =========================================================================
+   // Properties
+   // =========================================================================
 
-    /**
-     * @var UnitTester
-     */
-    protected $tester;
+   /**
+    * @var UnitTester
+    */
+   protected $tester;
 
-    // Public methods
-    // =========================================================================
+   // Public methods
+   // =========================================================================
 
-    // Tests
-    // =========================================================================
+   // Tests
+   // =========================================================================
 
-    /**
-     *
-     */
-    public function testPluginInstance()
-    {
-        $this->assertInstanceOf(
-            Cloudfrontprivate::class,
-            Cloudfrontprivate::$plugin
-        );
-    }
+   /**
+    *
+    */
+   public function testPluginInstance()
+   {
+      $this->assertInstanceOf(
+         Cloudfrontsignedurls::class,
+         Cloudfrontsignedurls::$plugin
+      );
+   }
 
-    /**
-     *
-     */
-    public function testCraftEdition()
-    {
-        Craft::$app->setEdition(Craft::Pro);
+   /**
+    *
+    */
+   public function testCraftEdition()
+   {
+      Craft::$app->setEdition(Craft::Pro);
 
-        $this->assertSame(
-            Craft::Pro,
-            Craft::$app->getEdition()
-        );
-    }
+      $this->assertSame(
+         Craft::Pro,
+         Craft::$app->getEdition()
+      );
+   }
 }

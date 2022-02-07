@@ -1,6 +1,6 @@
 <?php
 
-namespace overdog\cloudfrontprivatetests\acceptance;
+namespace troisiemejoueur\cloudfrontsignedurlstests\acceptance;
 
 use Craft;
 use FunctionalTester;

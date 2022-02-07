@@ -1,5 +1,5 @@
 {
-   "name": "overdog/cloudfront-private",
+   "name": "troisiemejoueur/cloudfront-signed-urls",
    "description": "A small plugin to sign cloudfront urls",
    "type": "craft-plugin",
    "version": "1.0.0",
@@ -30,16 +30,16 @@
    },
    "autoload": {
       "psr-4": {
-         "overdog\\cloudfrontprivate\\": "src/"
+         "troisiemejoueur\\cloudfrontsignedurls\\": "src/"
       }
    },
    "extra": {
-      "name": "cloudfront-private",
-      "handle": "cloudfront-private",
+      "name": "Cloudfront Signed Urls",
+      "handle": "cloudfront-signed-urls",
       "developer": "3ejoueur",
       "developerUrl": "https://www.3ejoueur.com",
       "documentationUrl": "https://www.3ejoueur.com",
       "changelogUrl": "https://www.3ejoueur.com",
-      "class": "overdog\\cloudfrontprivate\\CloudfrontPrivate"
+      "class": "troisiemejoueur\\cloudfrontsignedurls\\CloudfrontSignedUrls"
    }
 }

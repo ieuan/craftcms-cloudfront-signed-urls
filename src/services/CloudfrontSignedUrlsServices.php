@@ -1,20 +1,21 @@
 <?php
 
-namespace overdog\cloudfrontprivate\services;
+namespace troisiemejoueur\cloudfrontsignedurls\services;
 
-use overdog\cloudfrontprivate\CloudfrontPrivate;
+use troisiemejoueur\cloudfrontsignedurls\CloudfrontSignedUrls;
+
+use craft;
 use craft\base\Component;
 use Aws\CloudFront\CloudFrontClient;
 use Aws\Exception\AwsException;
-use craft;
 
 
-class CloudfrontPrivateServices extends Component
+class CloudfrontSignedUrlsServices extends Component
 {
 
    public function getPrivateKeyFolder()
    {
-      $privateKeyFolder = '/cloudfront-private';
+      $privateKeyFolder = '/cloudfront-signed-urls';
       $storagePath = Craft::$app->path->getStoragePath();
       $pluginStoragePath = $storagePath . $privateKeyFolder;
       return $pluginStoragePath;
@@ -25,7 +26,7 @@ class CloudfrontPrivateServices extends Component
    {
 
       // settings and variables
-      $settings = CloudfrontPrivate::getInstance()->settings;
+      $settings = CloudfrontSignedUrls::getInstance()->settings;
       $cloudfrontUrl = $settings['cloudfrontDistributionUrl'];
       $keyPairId = $settings['keyPairId'];
       $resourceKey = (!empty($cloudfrontUrl) ? rtrim($cloudfrontUrl, '/') . '/' : '') . $fileName;

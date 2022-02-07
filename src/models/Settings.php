@@ -1,6 +1,6 @@
 <?php
 
-namespace overdog\cloudfrontprivate\models;
+namespace troisiemejoueur\cloudfrontsignedurls\models;
 
 use craft\base\Model;
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace overdog\cloudfrontprivate;
+namespace troisiemejoueur\cloudfrontsignedurls;
 
-use overdog\cloudfrontprivate\models\Settings;
-use overdog\cloudfrontprivate\services\CloudfrontPrivateServices as Service;
-use overdog\cloudfrontprivate\twigextensions\CloudfrontPrivateTwigExtension;
+use troisiemejoueur\cloudfrontsignedurls\models\Settings;
+use troisiemejoueur\cloudfrontsignedurls\services\CloudfrontSignedUrlsServices as Service;
+use troisiemejoueur\cloudfrontsignedurls\twigextensions\CloudfrontSignedUrlsTwigExtension;
 
 use Craft;
 use craft\base\Plugin;
 use craft\helpers\FileHelper;
 
-class CloudfrontPrivate extends Plugin
+class CloudfrontSignedUrls extends Plugin
 {
 
    // Static Properties
@@ -35,10 +35,10 @@ class CloudfrontPrivate extends Plugin
 
       // Services
       $this->setComponents([
-         'cloudfrontPrivateServices' => Service::class,
+         'cloudfrontSignedUrlsServices' => Service::class,
       ]);
       // Twig Extension
-      Craft::$app->view->registerTwigExtension(new CloudfrontPrivateTwigExtension());
+      Craft::$app->view->registerTwigExtension(new CloudfrontSignedUrlsTwigExtension());
    }
 
    // Protected Methods
@@ -55,11 +55,11 @@ class CloudfrontPrivate extends Plugin
    protected function afterInstall()
    {
 
-      FileHelper::createDirectory($this->cloudfrontPrivateServices->getPrivateKeyFolder());
+      FileHelper::createDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyFolder());
    }
 
    protected function afterUninstall()
    {
-      FileHelper::removeDirectory($this->cloudfrontPrivateServices->getPrivateKeyFolder());
+      FileHelper::removeDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyFolder());
    }
 }
