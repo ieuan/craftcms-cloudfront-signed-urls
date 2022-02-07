@@ -2,24 +2,17 @@
 
 namespace overdog\cloudfrontprivate;
 
-use overdog\cloudfrontprivate\variables\CloudfrontPrivateVariable;
-use overdog\cloudfrontprivate\twigextensions\CloudfrontPrivateTwigExtension;
-
 use overdog\cloudfrontprivate\models\Settings;
 use overdog\cloudfrontprivate\services\CloudfrontPrivateServices as Service;
+use overdog\cloudfrontprivate\twigextensions\CloudfrontPrivateTwigExtension;
 
 use Craft;
 use craft\base\Plugin;
-use craft\web\twig\variables\CraftVariable;
-
-use yii\base\Event;
-
 
 class CloudfrontPrivate extends Plugin
 {
    // Static Properties
    // =========================================================================
-
 
    public static $plugin;
 
@@ -36,41 +29,21 @@ class CloudfrontPrivate extends Plugin
    public function init()
    {
       parent::init();
-      self::$plugin = $this;
 
+      // Service
       $this->setComponents([
          'cloudfrontPrivateServices' => Service::class,
       ]);
-      
-
+      // Twig Extension
       Craft::$app->view->registerTwigExtension(new CloudfrontPrivateTwigExtension());
-
-      Event::on(
-         CraftVariable::class,
-         CraftVariable::EVENT_INIT,
-         function (Event $event) {
-            /** @var CraftVariable $variable */
-            $variable = $event->sender;
-            $variable->set('cloudfrontprivate', CloudfrontPrivateVariable::class);
-         }
-      );
-
-      Craft::info(
-         Craft::t(
-            'cloudfront-private',
-            '{name} plugin loaded',
-            ['name' => $this->name]
-         ),
-         __METHOD__
-      );
    }
 
    // Protected Methods
    // =========================================================================
 
+   // Settings
    protected function createSettingsModel()
    {
-       return new Settings();
+      return new Settings();
    }
-
 }
