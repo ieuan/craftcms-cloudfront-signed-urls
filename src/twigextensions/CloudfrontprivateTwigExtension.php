@@ -27,7 +27,7 @@ class CloudfrontPrivateTwigExtension extends AbstractExtension
 
    public function getSignedUrl($fileName = null, $fileExpiry = null)
    {
-      $signedUrl = CloudfrontPrivate::getInstance()->cloudfrontPrivateServices->signAPrivateDistribution($fileName, $fileExpiry);
+      $signedUrl = CloudfrontPrivate::getInstance()->cloudfrontPrivateServices->signPrivateDistribution($fileName, $fileExpiry);
       return $signedUrl;
    }
 }

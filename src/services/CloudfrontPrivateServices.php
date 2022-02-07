@@ -3,7 +3,6 @@
 namespace overdog\cloudfrontprivate\services;
 
 use overdog\cloudfrontprivate\CloudfrontPrivate;
-use Craft;
 use craft\base\Component;
 use Aws\CloudFront\CloudFrontClient;
 use Aws\Exception\AwsException;
@@ -11,16 +10,18 @@ use Aws\Exception\AwsException;
 class CloudfrontPrivateServices extends Component
 {
 
-   public function signAPrivateDistribution($fileName, $fileExpiry)
+   public function signPrivateDistribution(string $fileName, ?int $fileExpiry)
    {
+
       // settings and variables
       $settings = CloudfrontPrivate::getInstance()->settings;
-
       $cloudfrontUrl = $settings['cloudfrontDistributionUrl'];
-      $resourceKey = (!empty($cloudfrontUrl) ? rtrim($cloudfrontUrl, '/') . '/' : '') . $fileName;
       $keyPairId = $settings['keyPairId'];
+      $resourceKey = (!empty($cloudfrontUrl) ? rtrim($cloudfrontUrl, '/') . '/' : '') . $fileName;
+      // if fileExpiry is not passed when calling the twig function, use the defaultExpires setting 
+      $expires = time() + ($fileExpiry !== null ? $fileExpiry : $settings['defaultExpires']);
+
       $privateKey = dirname(__DIR__) . '/private_key.pem';
-      $expires = time() + ($fileExpiry !== null && is_int($fileExpiry) ? $fileExpiry : $settings['defaultExpires']);
 
       // create aws cloudfront client
       $cloudFrontClient = new CloudFrontClient([

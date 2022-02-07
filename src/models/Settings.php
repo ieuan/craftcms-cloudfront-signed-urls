@@ -7,13 +7,12 @@ use craft\base\Model;
 class Settings extends Model
 {
 
-   // default values for each setting
-   public $keyPairId = '';
-   public $cloudfrontDistributionUrl = '';
-   public $profile = 'default';
-   public $version = '2020-05-31';
-   public $region = 'ca-central-1';
-   public $defaultExpires = 3600; // 60 minutes
+   public string $keyPairId = '';
+   public string $cloudfrontDistributionUrl = '';
+   public string $profile = 'default';
+   public string $version = '2020-05-31';
+   public string $region = 'ca-central-1';
+   public int $defaultExpires = 3600; // 60 minutes
 
    public function rules()
    {
