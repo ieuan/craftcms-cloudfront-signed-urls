@@ -12,6 +12,7 @@ class Settings extends Model
    public string $profile = 'default';
    public string $version = '2020-05-31';
    public string $region = 'ca-central-1';
+   public string $privateKeyFileName = 'private_key.pem';
    public int $defaultExpires = 3600; // 60 minutes
 
    public function rules()
@@ -22,6 +23,7 @@ class Settings extends Model
          ['profile', 'required'],
          ['version', 'required'],
          ['region', 'required'],
+         ['privateKeyFileName', 'required'],
          ['defaultExpires', 'required']
       ];
    }

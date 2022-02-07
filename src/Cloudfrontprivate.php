@@ -25,6 +25,7 @@ class CloudfrontPrivate extends Plugin
    public $hasCpSettings = false;
    public $hasCpSection = false;
 
+
    // Public Methods
    // --------------------------------------------------------------------------
 
@@ -49,16 +50,16 @@ class CloudfrontPrivate extends Plugin
       return new Settings();
    }
 
-   
+   // create folder in storage on install and remove it on uninstall
+
    protected function afterInstall()
    {
-      $storagePath = Craft::getStoragePath();
-      $pluginStoragePath = $storagePath . 'cloudfront-private/';
 
-      $directoryExists = FileHelper::directoryExists($pluginStoragePath);
+      FileHelper::createDirectory($this->cloudfrontPrivateServices->getPrivateKeyFolder());
+   }
 
-      if (!$directoryExists) {
-         FileHelper::createDirectory($pluginStoragePath);
-      }
+   protected function afterUninstall()
+   {
+      FileHelper::removeDirectory($this->cloudfrontPrivateServices->getPrivateKeyFolder());
    }
 }
