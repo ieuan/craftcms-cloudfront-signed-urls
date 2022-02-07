@@ -11,32 +11,25 @@ use Aws\Exception\AwsException;
 class CloudfrontPrivateServices extends Component
 {
 
-   // Public Methods
-   // =========================================================================
-
-   public function signAPrivateDistribution($fileName)
+   public function signAPrivateDistribution($fileName, $fileExpiry)
    {
-      // ian - mettre url en settings de config (url de base)
-      // ian - mettre ensemble tous les settings dans une fonction
-      $cloudFrontUrl = CloudfrontPrivate::getInstance()->settings->cloudfrontDistributionUrl;
-      $resourceKey = $cloudFrontUrl . $fileName;
-      //$resourceKey = 'https://d2max5b299nmyq.cloudfront.net/overdog/idee-simplifiee.pdf';
+      // settings and variables
+      $settings = CloudfrontPrivate::getInstance()->settings;
 
-
-      // ian - dans settings de fonction (en secondes)
-      $expires = time() + 300; // 5 minutes (5 * 60 seconds) from now.
-      // ian - en settings de config
+      $cloudfrontUrl = $settings['cloudfrontDistributionUrl'];
+      $resourceKey = (!empty($cloudfrontUrl) ? rtrim($cloudfrontUrl, '/') . '/' : '') . $fileName;
+      $keyPairId = $settings['keyPairId'];
       $privateKey = dirname(__DIR__) . '/private_key.pem';
+      $expires = time() + ($fileExpiry !== null && is_int($fileExpiry) ? $fileExpiry : $settings['defaultExpires']);
 
-      
-      // ian - en settings de config - faire throw error if not
-      $keyPairId = CloudfrontPrivate::getInstance()->settings->keyPairId;
-      // ian - region en setting de config
+      // create aws cloudfront client
       $cloudFrontClient = new CloudFrontClient([
-         'profile' => 'default',
-         'version' => 'latest',
-         'region' => 'ca-central-1'
+         'profile' => $settings['profile'],
+         'version' => $settings['version'],
+         'region' => $settings['region']
       ]);
+
+      // sign the url
       try {
          $result = $cloudFrontClient->getSignedUrl([
             'url' => $resourceKey,
@@ -44,7 +37,6 @@ class CloudfrontPrivateServices extends Component
             'private_key' => $privateKey,
             'key_pair_id' => $keyPairId
          ]);
-
          return $result;
       } catch (AwsException $e) {
          return 'Error: ' . $e->getAwsErrorMessage();

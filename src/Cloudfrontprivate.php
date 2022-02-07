@@ -11,26 +11,27 @@ use craft\base\Plugin;
 
 class CloudfrontPrivate extends Plugin
 {
+   
    // Static Properties
-   // =========================================================================
+   // --------------------------------------------------------------------------
 
    public static $plugin;
 
    // Public Properties
-   // =========================================================================
+   // --------------------------------------------------------------------------
 
    public $schemaVersion = '1.0.0';
    public $hasCpSettings = false;
    public $hasCpSection = false;
 
    // Public Methods
-   // =========================================================================
+   // --------------------------------------------------------------------------
 
    public function init()
    {
       parent::init();
 
-      // Service
+      // Services
       $this->setComponents([
          'cloudfrontPrivateServices' => Service::class,
       ]);
@@ -39,7 +40,7 @@ class CloudfrontPrivate extends Plugin
    }
 
    // Protected Methods
-   // =========================================================================
+   // --------------------------------------------------------------------------
 
    // Settings
    protected function createSettingsModel()
