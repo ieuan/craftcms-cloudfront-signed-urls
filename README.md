@@ -38,7 +38,7 @@ __Please, do not open issues for AWS configurations problems or questions that a
 
 ## How it works 
 
-You upload your assets to a non-public S3 bucket with a Cloudfront Distribution with the `Restrict Viewer Access` setting to `Yes`. When you create URLs in your templates, these URLs are signed with a random key.
+You upload your assets to a non-public S3 bucket with a Cloudfront distribution with the `Restrict Viewer Access` setting to `Yes`. When you create URLs in your templates, these URLs are signed with a random key.
 
 These URLs are created on page load and expires after the duration that you entered. 
 
@@ -133,30 +133,23 @@ This .pem file cannot be add as .env variable.
 
 ## S3 storage and Craft CMS Control Panel
 
-
-You will need the first-party [AWS S3 plugin from Pixel & Tonic](https://plugins.craftcms.com/aws-s3).
-
-__Note:__ We assume that you already worked with the AWS S3 plugin and that you know how to create bucket, Cloudfront distribution and IAM access for the CMS. If not, you can read the documentation of the plugin and this [good article from Andrew Welch](https://nystudio107.com/blog/using-aws-s3-buckets-cloudfront-distribution-with-craft-cms).
-
-__Please, do not open issue tickets for AWS configurations problems or questions.__
-
 #### AWS 
-1. Create a non-public S3 bucket on AWS (and a user with access programmatically for Craft CMS)
-1. Create a cloudfront distribution with _Restrict viewer access_
+1. Create a non-public S3 bucket on AWS (and a IAM user with a programmatically access for your Craft CMS)
+1. Create a Cloudfront distribution with the `Restrict Viewer Access` setting to `Yes`
 
 #### Control Panel
 1. Install the [AWS S3 plugin from Pixel & Tonic](https://plugins.craftcms.com/aws-s3)
 1. Create a volume with the Amazon S3 `Volume Type`
-1. Disable the lightswith for `Assets in this volume have public URLs`
+1. Turn __off__ the lightswith for `Assets in this volume have public URLs`
 1. Add your S3 bucket credentials and settings
 
-__Note: When a user(mostly the admin) is logged in in the Control Panel, he will be able to open the assets with the Download button, but not to preview it (as the assets have no public URLs).__
+__Note: When a user(mostly the admin) is logged in in the Control Panel, he will be able to open / view the assets with the Download button, but not to preview it (as the assets have no public URLs).__
 
 #### Template restricted zone -> Example
 
-1. Setup your templates with content based on which usergroup is logged in.
+1. Create your templates based on which user group is logged in (or any condition that you want).
 2. Show assets with the Twig function.
-3. No one from the "web" will be able to view the files. The URL will expires after the duration that you entered. A user can copy and share the URL, but that's the only way to guess / share a signed URL.
+3. No one from the "web" will be able to view the files. The URL will expires after the duration that you entered. A user can copy and share the URL to another, but that's the only way to share / access a signed URL.
 
 
 
