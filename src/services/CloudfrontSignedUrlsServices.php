@@ -26,21 +26,21 @@ class CloudfrontSignedUrlsServices extends Component
    {
 
       // settings and variables
-      $settings = CloudfrontSignedUrls::getInstance()->settings;
-      $cloudfrontUrl = $settings['cloudfrontDistributionUrl'];
-      $keyPairId = $settings['keyPairId'];
+      $settings = CloudfrontSignedUrls::getInstance()->getSettings();
+      $cloudfrontUrl = $settings->cloudfrontDistributionUrl;
+      $keyPairId = $settings->keyPairId;
       $resourceKey = (!empty($cloudfrontUrl) ? rtrim($cloudfrontUrl, '/') . '/' : '') . $fileName;
       // if fileExpiry is not passed when calling the twig function, use the defaultExpires setting 
-      $expires = time() + ($fileExpiry !== null ? $fileExpiry : $settings['defaultExpires']);
+      $expires = time() + ($fileExpiry !== null ? $fileExpiry : $settings->defaultExpires);
       // getPrivateKey
       $privateKeyPath = $this->getPrivateKeyFolder();
       $privateKey = $privateKeyPath . '/' . $settings['privateKeyFileName'];
 
       // create aws cloudfront client
       $cloudFrontClient = new CloudFrontClient([
-         'profile' => $settings['profile'],
-         'version' => $settings['version'],
-         'region' => $settings['region']
+         'profile' => $settings->profile,
+         'version' => $settings->version,
+         'region' => $settings->region
       ]);
 
       // sign the url

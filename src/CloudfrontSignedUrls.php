@@ -13,19 +13,6 @@ use craft\helpers\FileHelper;
 class CloudfrontSignedUrls extends Plugin
 {
 
-   // Static Properties
-   // --------------------------------------------------------------------------
-
-   public static $plugin;
-
-   // Public Properties
-   // --------------------------------------------------------------------------
-
-   public $schemaVersion = '1.0.0';
-   public $hasCpSettings = false;
-   public $hasCpSection = false;
-
-
    // Public Methods
    // --------------------------------------------------------------------------
 
@@ -51,7 +38,6 @@ class CloudfrontSignedUrls extends Plugin
    }
 
    // create folder in storage on install and remove it on uninstall
-
    protected function afterInstall()
    {
 
