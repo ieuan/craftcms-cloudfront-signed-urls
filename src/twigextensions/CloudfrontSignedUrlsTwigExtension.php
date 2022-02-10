@@ -20,7 +20,7 @@ class CloudfrontSignedUrlsTwigExtension extends AbstractExtension
    public function getFunctions()
    {
       return [
-         new TwigFunction('signurl', [$this, 'getSignedUrl']),
+         new TwigFunction('signUrl', [$this, 'getSignedUrl']),
       ];
    }
 

@@ -10,6 +10,8 @@
  * 
  */
 
+
+// App helper is useful to retrieve .env variables, example: App::env('SIGNED_URLS_URL)'
 use craft\helpers\App;
 
 return [
@@ -17,10 +19,10 @@ return [
    // Cloudfront Distribution Settings
    // --------------------------------------------------
 
-   // The keyParId created with your CloudFront distribution
+   // The value of the Key-Pair-Id field from your public–private key pair for your Cloudfront distribution.
    'keyPairId' => '',
 
-   // include in the URL any subfolder if needed or add it when calling the Twig function in your template.
+   // append to the URL any subfolder that you want or add it when calling the Twig function in your template.
    // Do not fortget http or https, based on your Cloudfront distribution settings.
    'cloudfrontDistributionUrl' => '',
 
@@ -41,6 +43,6 @@ return [
 
    // File Expiry - Integer in seconds - if not set with the twig function, fallback to this value. Default is 3600 (60 minutes)
    // The expiry time is calculated like this : now + defaultExpires
-   'defaultExpires' => 300
+   'defaultExpires' => 3600
 
 ];
