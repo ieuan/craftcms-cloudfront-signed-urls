@@ -8,7 +8,7 @@ This plugin provides AWS Cloudfront Signed Urls in Twig templates
 
 This plugin requires Craft CMS 3.4 or later.
 
----
+
 
 ## Installation
 
@@ -24,7 +24,7 @@ To install the plugin, follow these instructions.
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Cloudfront Signed Urls.
 
----
+
 
 ## Overview
 
@@ -34,7 +34,7 @@ In order to use this plugin, we assume that you already worked with the AWS S3 p
 
 __Please, do not open issues for AWS configurations problems or questions that are not related to the plugin.__
 
----
+
 
 ## How it works 
 
@@ -44,7 +44,7 @@ These URLs are created on page load and expires after the duration that you ente
 
 [Documentation for Cloudfront Signed Urls](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html)
 
----
+
 
 ## Configuration file
 The plugin comes with a `config.php` file that defines some sensible defaults.
@@ -75,7 +75,7 @@ The expiry time is calculated like this : `now time` + `defaultExpires`.
 
 __Note:__ You can use values from your ENV file for all the configuration settings. Example : `App::env('YOUR_VARIABLE_NAME')`
 
----
+
 
 ## An Example Config File
 ```
@@ -93,7 +93,7 @@ return [
 ];
 ```
 
----
+
 
 ## Private Key (.pem file)
 
@@ -106,7 +106,7 @@ __Note: When uninstalling the plugin, this folder (and your private key) is dele
 
 This .pem file cannot be add as .env variable.
 
----
+
 
 ## Usage in Twig
 
@@ -129,7 +129,7 @@ This .pem file cannot be add as .env variable.
 {{ signUrl(myAssetUrl, 300) }}
 ```
 
----
+
 
 ## S3 storage and Craft CMS Control Panel
 
@@ -159,6 +159,6 @@ __Note: When a user(mostly the admin) is logged in in the Control Panel, he will
 3. No one from the "web" will be able to view the files. The URL will expires after the duration that you entered. A user can copy and share the URL, but that's the only way to guess / share a signed URL.
 
 
----
+
 
 Brought to you from Canada by [3e joueur](https://www.3ejoueur.com)
