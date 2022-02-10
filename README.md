@@ -30,9 +30,9 @@ To install the plugin, follow these instructions.
 
 This plugin add a Twig function to sign URLs from a AWS Cloudfront distribution. The common usage is for a restricted section for logged in users only. 
 
-In order to use this plugin, we assume that you already worked with the AWS S3 plugin and that you know how to create a bucket, a Cloudfront distribution and IAM access for the CMS. If not, you can read the documentation of the first-party plugin [AWS S3 plugin from Pixel & Tonic](https://plugins.craftcms.com/aws-s3) and this [good article from Andrew Welch](https://nystudio107.com/blog/using-aws-s3-buckets-cloudfront-distribution-with-craft-cms).
+In order to use this plugin, we assume that you already worked with AWS and that you know how to create a bucket, a Cloudfront distribution and IAM access for the CMS. If not, you can read the documentation of the first-party plugin [AWS S3 plugin from Pixel & Tonic](https://plugins.craftcms.com/aws-s3) and this [article from Andrew Welch](https://nystudio107.com/blog/using-aws-s3-buckets-cloudfront-distribution-with-craft-cms).
 
-__Please, do not open issues for AWS configurations problems or questions that are not related to the plugin.__
+__Please, do not open issues for AWS configuration problems or questions that are not related to the plugin.__
 
 
 
