@@ -1,8 +1,8 @@
-# Cloudfront Signed Urls plugin for Craft CMS 3.x
+<p align="center"><img src="./src/icon.svg" width="100" height="100" alt="Cloudfront Signed Url icon"></p>
 
-Create AWS Cloudfront Signed Urls for S3 Craft CMS storage
+<h1 align="center">Cloudfront Signed Urls for Craft CMS</h1>
 
-![Screenshot](resources/img/plugin-logo.png)
+This plugin provides AWS Cloudfront Signed Urls in Twig templates
 
 ## Requirements
 
