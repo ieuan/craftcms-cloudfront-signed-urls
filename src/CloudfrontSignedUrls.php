@@ -41,11 +41,11 @@ class CloudfrontSignedUrls extends Plugin
    protected function afterInstall()
    {
 
-      FileHelper::createDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyFolder());
+      FileHelper::createDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyStoragePath());
    }
 
    protected function afterUninstall()
    {
-      FileHelper::removeDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyFolder());
+      FileHelper::removeDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyStoragePath());
    }
 }
