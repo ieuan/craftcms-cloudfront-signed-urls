@@ -13,18 +13,41 @@ use Aws\Exception\AwsException;
 class CloudfrontSignedUrlsServices extends Component
 {
 
-   public function getPrivateKeyFolder()
-   {
-      $privateKeyFolder = '/cloudfront-signed-urls';
-      $storagePath = Craft::$app->path->getStoragePath();
-      $pluginStoragePath = $storagePath . $privateKeyFolder;
-      return $pluginStoragePath;
+   // Vars
+   // --------------------------------------------------------------------------
+
+   private $privateKey;
+   
+
+   // Constructor
+   // --------------------------------------------------------------------------
+   
+   public function __construct()
+   { 
+      $this->privateKey = $this->getPrivateKey(); 
    }
 
 
+   // Pulic methods
+   // --------------------------------------------------------------------------
+   
+   public function getPrivateKeyStoragePath()
+   {
+      $storagePath = Craft::$app->path->getStoragePath();
+      $pluginStoragePath = $storagePath . '/cloudfront-signed-urls';
+      return $pluginStoragePath;
+   }
+
+   public function getPrivateKey()
+   {
+      $settings = CloudfrontSignedUrls::getInstance()->getSettings();
+      $privateKeyPath = $this->getPrivateKeyStoragePath();
+      $key = $privateKeyPath . '/' . $settings->privateKeyFileName;
+      return $key;
+   }
+
    public function signPrivateDistribution(string $fileName, ?int $fileExpiry)
    {
-
       // settings and variables
       $settings = CloudfrontSignedUrls::getInstance()->getSettings();
       $cloudfrontUrl = $settings->cloudfrontDistributionUrl;
@@ -32,9 +55,6 @@ class CloudfrontSignedUrlsServices extends Component
       $resourceKey = (!empty($cloudfrontUrl) ? rtrim($cloudfrontUrl, '/') . '/' : '') . $fileName;
       // if fileExpiry is not passed when calling the twig function, use the defaultExpires setting 
       $expires = time() + ($fileExpiry !== null ? $fileExpiry : $settings->defaultExpires);
-      // getPrivateKey
-      $privateKeyPath = $this->getPrivateKeyFolder();
-      $privateKey = $privateKeyPath . '/' . $settings['privateKeyFileName'];
 
       // create aws cloudfront client
       $cloudFrontClient = new CloudFrontClient([
@@ -48,7 +68,7 @@ class CloudfrontSignedUrlsServices extends Component
          $result = $cloudFrontClient->getSignedUrl([
             'url' => $resourceKey,
             'expires' => $expires,
-            'private_key' => $privateKey,
+            'private_key' => $this->privateKey,
             'key_pair_id' => $keyPairId
          ]);
          return $result;
