@@ -15,7 +15,7 @@ class Settings extends Model
    public string $privateKeyFileName = 'private_key.pem';
    public int $defaultExpires = 3600; // 60 minutes
 
-   public function rules()
+   public function rules(): array
    {
       return [
          ['keyPairId', 'required'],

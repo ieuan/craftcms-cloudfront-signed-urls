@@ -32,19 +32,19 @@ class CloudfrontSignedUrls extends Plugin
    // --------------------------------------------------------------------------
 
    // Settings
-   protected function createSettingsModel()
+   protected function createSettingsModel(): ?\craft\base\Model
    {
       return new Settings();
    }
 
    // create folder in storage on install and remove it on uninstall
-   protected function afterInstall()
+   protected function afterInstall(): void
    {
 
       FileHelper::createDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyStoragePath());
    }
 
-   protected function afterUninstall()
+   protected function afterUninstall(): void
    {
       FileHelper::removeDirectory($this->cloudfrontSignedUrlsServices->getPrivateKeyStoragePath());
    }
