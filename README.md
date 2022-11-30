@@ -139,9 +139,11 @@ This `.pem` file cannot be added as an `.env` variable.
 
 #### Control Panel
 1. Install the [AWS S3 plugin from Pixel & Tonic](https://plugins.craftcms.com/aws-s3).
-1. Create a volume with the Amazon S3 `Volume Type`.
-1. Turn __off__ the lightswith for `Assets in this volume have public URLs`.
-1. Add your S3 bucket credentials and settings.
+1. Create a new filesystem in the Control Panel (settings/filesystems) with the Amazon S3 Filesystem Type.
+1. Turn __off__ the lightswith for `Filesystem in this volume have public URLs`.
+1. Add your S3 bucket credentials, subfolder and settings.
+1. Let empty the `CloudFront Distribution ID` and `CloudFront Path Prefix` fields.
+1. Create a new volume (settings/assets) and choose your Private filesystem for `Asset Filesystem`
 
 __Note: When a user (mostly the admin) is logged in the Control Panel, he will be able to open / view the assets by clicking the download button, but he will not be able to preview them (as the assets have no public URLs).__
 
