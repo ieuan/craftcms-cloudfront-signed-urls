@@ -113,19 +113,19 @@ This `.pem` file cannot be added as an `.env` variable.
 ##### Basic usage with filename and an expiry delay of 300 seconds.
 
 ```
-{{ signUrl(myAssetTest.filename, 300) }}
+{{ signUrl(myAssetTest.getUrl(), 300) }}
 ```
 
 ##### Usage without expiry delay - it will use your fallback config value or the default one.
 
 ```
-{{ signUrl(myAssetTest.filename) }}
+{{ signUrl(myAssetTest.getUrl()) }}
 ```
 
 ##### Usage with a complete URL - this use case only works if you did not provide a value to the _cloudfrontDistributionUrl_ setting in your config file.
 
 ```
-{% set myAssetUrl = 'https://my-distribution-url.cloudfront.net' ~  myAssetTest.filename %}
+{% set myAssetUrl = 'https://my-distribution-url.cloudfront.net' ~  myAssetTest.getUrl() %}
 {{ signUrl(myAssetUrl, 300) }}
 ```
 
